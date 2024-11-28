@@ -63,14 +63,8 @@ public class TestSelenium {
 
         } catch (Exception e) {
             System.out.println("Se produjo un error durante la ejecución: " + e.getMessage());
-        }finally {
-            // Cerrar el navegador al finalizar el test
-            if (driver != null) {
-                driver.quit();
-            }
         }
-
-
+        closeWindow();
     }
 
 
@@ -117,6 +111,7 @@ public class TestSelenium {
             e.printStackTrace();
             fail("Test falló con el error: " + e.getMessage());
         }
+     closeWindow();
     }
     */
 
@@ -164,6 +159,7 @@ public class TestSelenium {
             e.printStackTrace();
             fail("Test falló con el error: " + e.getMessage());
         }
+        closeWindow();
     }
 */
     //test cuatro
@@ -229,13 +225,9 @@ public class TestSelenium {
             }
         } catch (Exception e) {
             System.out.println("Se produjo un error durante la ejecución: " + e.getMessage());
-        } finally {
-            // Cerrar el navegador al finalizar el test
-            if (driver != null) {
-                driver.quit();
-            }
         }
-    }
+         closeWindow();
+    }   */
 
     @After
     public void closeWindow() {
@@ -244,6 +236,6 @@ public class TestSelenium {
         }
     }
 
-     */
+
 }
 
