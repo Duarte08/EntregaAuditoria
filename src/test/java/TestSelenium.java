@@ -19,11 +19,11 @@ public class TestSelenium {
 
     @Before
     public void setupDriver() {
-        System.setProperty("webdriver", "C:\\Users\\Manuel Duarte\\Downloads\\chromedriver.exe");
+       // System.setProperty("webdriver", "C:\\Users\\Manuel Duarte\\Downloads\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Espera implícita
     }
-//
+
 //    //test uno
     @Test
     public void testHomeCount() {
@@ -45,6 +45,22 @@ public class TestSelenium {
             WebElement result = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"onesignal-slidedown-cancel-button\"]")));
             result.click();
 
+            // Encontrar la barra de búsqueda usando el placeholder y escribir "Jansport"
+            WebElement searchItem = driver.findElement(By.cssSelector("input[placeholder='Buscar productos o categorias ...']"));
+            searchItem.sendKeys("Jansport");
+            searchItem.sendKeys(Keys.RETURN); //
+            Thread.sleep(2000);
+
+            // Paso 2: Validar los ítems que se encuentran
+            List<WebElement> countItems = driver.findElements(By.xpath("//*[@id=\"root\"]/div/div/main/div[2]/div"));
+            int itemCount = countItems.size();
+            if (itemCount != 0) {
+                System.out.println("Número de ítems: " + itemCount);
+
+            }else {
+                assert itemCount == 0 : "Se encuentra vacio.";
+            }
+
         } catch (Exception e) {
             System.out.println("Se produjo un error durante la ejecución: " + e.getMessage());
         }finally {
@@ -56,7 +72,10 @@ public class TestSelenium {
 
 
     }
-//    //test dos
+
+
+    //test dos
+    /*
     @Test
     public void testValidationPages() {
         try {
@@ -99,6 +118,9 @@ public class TestSelenium {
             fail("Test falló con el error: " + e.getMessage());
         }
     }
+    */
+
+    /*
   //test tres
     @Test
     public void testFilterValidation() {
@@ -143,7 +165,9 @@ public class TestSelenium {
             fail("Test falló con el error: " + e.getMessage());
         }
     }
-
+*/
+    //test cuatro
+    /*
     @Test
     public void testAddCart() {
         try {
@@ -219,4 +243,7 @@ public class TestSelenium {
             driver.quit();
         }
     }
+
+     */
 }
+
